@@ -1,0 +1,18 @@
+<h1>Caesar Cipher Encrypter</h1>
+
+<form action="/caesarcipher" method="post">
+  <input type="text" name="string" placeholder="Your text here">
+  <select name="shift">
+    <option disabled="disabled" selected="selected">Key</option>
+    <% (1..26).to_a.each do |i| %>
+      <option>+ <%= i %></option>
+    <% end %>
+  </select>
+  <button type="submit">Encrypt</button>
+</form>
+
+<% unless @string.to_s.empty? %>
+  <p>Your text: <%= @string %></p>
+  <p>Your key: +<%= @shift %></p>
+  <p>Your cipher: <%= @cipher %></p>
+<% end %>

@@ -1,19 +1,16 @@
 require 'sinatra'
 
-get '/' do
-  "Salve munde!"
-  redirect :index
+get "/caesarcipher" do
+  @title = "Caesar Cipher Encrypter"
+  erb :caesarcipher
 end
 
-get "/index" do
-  erb :index
-end
-
-post "/index" do
+post "/caesarcipher" do
   @string = params[:string]
   @shift = params[:shift].to_s.empty? ? 0 : params[:shift].slice(/\d+/).to_i
   @cipher = caesar_cipher(@string, @shift)
-  erb :index
+  @title = "Caesar Cipher Encrypter"
+  erb :caesarcipher
 end
 
 

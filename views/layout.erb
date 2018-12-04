@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Caesar Cipher</title>
+    <title><%= @title %></title>
   </head>
   <body>
     <%= yield %>
+
+    <% if @title != "Sinatra Web Games" %>
+      <a href="./index">Back to main</a>
+    <% end %>
+
   </body>
 </html>
