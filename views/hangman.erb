@@ -1,1 +1,17 @@
 <h1>Hangman</h1>
+
+<h2>Guess a letter<h2>
+
+<form action="/hangman" method="POST">
+  <select name="character">
+    <option disabled="disabled" selected="selected">Character</option>
+    <% ("a".."z").to_a.each do |char| %>
+      <option><%= char %></option>
+    <% end %>
+  </select>
+  <button type="submit">Guess</button>
+</form>
+
+<% unless @character.to_s.empty? %>
+  <p>Your quess: <%= @character %></p>
+<% end %>
