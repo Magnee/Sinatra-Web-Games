@@ -3,7 +3,7 @@
 <h2>Guess a letter<h2>
 
 <form action="/hangman" method="POST">
-  <select name="character">
+  <select name="guess">
     <option disabled="disabled" selected="selected">Character</option>
     <% ("a".."z").to_a.each do |char| %>
       <option><%= char %></option>
@@ -12,6 +12,6 @@
   <button type="submit">Guess</button>
 </form>
 
-<% unless @character.to_s.empty? %>
-  <p>Your quess: <%= @character %></p>
+<% unless @guess.to_s.empty? %>
+  <p>Your quess: <%= @guess %></p>
 <% end %>
