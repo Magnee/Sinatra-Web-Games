@@ -35,9 +35,9 @@ def play
     update_guesslist
     update_preview
     update_wrongs
-    update_image
     check_win
     check_defeat
+    update_image
   end
   save_session
 end
@@ -69,7 +69,7 @@ def update_wrongs
 end
 
 def update_image
-  @image = "images/hangman#{@wrongs}.png"
+  @image = @win == true ? "images/hangmanwin.png" : "images/hangman#{@wrongs}.png"
 end
 
 def check_win
