@@ -1,6 +1,7 @@
 require "sinatra"
 require_relative "lib/caesar_cipher"
 require_relative "lib/hang_man"
+require_relative "lib/master_mind"
 
 
 get '/' do
