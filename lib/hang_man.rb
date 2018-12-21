@@ -24,6 +24,7 @@ def setup
   @wrongs = 0
   @win = false
   @defeat = false
+  @image = "images/hangman#{@wrongs}.png"
   save_session
   session[:setup_done] = true
 end
@@ -34,6 +35,7 @@ def play
     update_guesslist
     update_preview
     update_wrongs
+    update_image
     check_win
     check_defeat
   end
@@ -48,6 +50,7 @@ def load_session
   @wrongs = session[:wrongs]
   @win = session[:win]
   @defeat = session[:defeat]
+  @image = session[:image]
 end
 
 def update_guesslist
@@ -65,6 +68,10 @@ def update_wrongs
   @wrongs += 1 if wrong == true
 end
 
+def update_image
+  @image = "images/hangman#{@wrongs}.png"
+end
+
 def check_win
   @win = true if @secret_word == @preview
 end
@@ -79,4 +86,5 @@ def save_session
   session[:wrongs] = @wrongs
   session[:win] = @win
   session[:defeat] = @defeat
+  session[:image] = @image
 end

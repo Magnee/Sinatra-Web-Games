@@ -6,6 +6,8 @@
   <h2><%= @secret_word.gsub(/./, "?") %></h2>
 <% end %>
 
+<img src=<%= @image %> alt="hangman picture" />
+
 <p>Gallow pieces: <%= @wrongs %>/9</p>
 
 <h2><%= @preview.capitalize.split("").join(" ") %> (<%= @preview.length %>)</h2>
