@@ -1,0 +1,66 @@
+html, body {
+  margin: 0;
+}
+
+header {
+  background-color: lightblue;
+  height: 50px;
+  font-weight: bold;
+  line-height: normal;
+  margin: 0;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+nav {
+  background-color: lightblue;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+}
+
+nav a {
+  color: black;
+  display: inline-block;
+  font-size: 1em;
+  line-height: normal;
+  padding: 10px 10px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+nav a:hover {
+  background-color: white;
+}
+
+article {
+  padding: 100px 0 50px 0;
+}
+
+footer {
+  background-color: lightblue;
+  height: 50px;
+  line-height: 50px;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+footer p {
+  color: black;
+  display: inline-block;
+  font-size: 1em;
+  line-height: normal;
+  padding: 10px 10px;
+  vertical-align: middle;
+  margin: 0;
+}

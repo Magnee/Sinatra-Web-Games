@@ -1,8 +1,7 @@
 main {
-  background-color: lightgrey;
-  border: 1px solid black;
-  margin: auto;
-  margin-top: 50px;
+  border: 1px solid lightblue;
+  box-shadow: 0 5px 10px lightblue;
+  margin: 20px auto;
   width: 320px;
 }
 
@@ -17,7 +16,7 @@ main {
 
 #imagecontainer {
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid lightblue;
   margin: auto;
   text-align: center;
   width: 250px;
@@ -42,7 +41,7 @@ img {
 }
 
 #interactive {
-  border: 1px solid black;
+  border: 1px solid lightblue;
   height: 120px;
   margin: auto;
   margin-bottom: 20px;

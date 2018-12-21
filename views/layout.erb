@@ -2,14 +2,29 @@
 <html>
   <head>
     <title><%= @title %></title>
+    <link rel="stylesheet" type="text/css" href="<%= url("css/main.css")%>">
     <link rel="stylesheet" type="text/css" href="<%= url("css#{request.path_info}.css")%>">
   </head>
-  <body>
-    <%= yield %>
 
-    <% if @title != "Sinatra Web Games" %>
-      <a href="./index">Back to main</a>
-    <% end %>
+  <body>
+
+    <header>
+      <p>Sinatra Web Games</p>
+    </header>
+
+    <nav>
+      <a href="./index">Home</a>
+      <a href="./caesarcipher">Caesar Cipher Encrypter</a>
+      <a href="./hangman">Hangman</a>
+    </nav>
+
+    <article>
+      <%= yield %>
+    </article>
+
+    <footer>
+      <p>This is a footer</p>
+    </footer>
 
   </body>
 </html>
