@@ -1,6 +1,6 @@
 require "sinatra"
-require_relative "caesar_cipher"
-require_relative "hang_man"
+require_relative "lib/caesar_cipher"
+require_relative "lib/hang_man"
 
 
 get '/' do

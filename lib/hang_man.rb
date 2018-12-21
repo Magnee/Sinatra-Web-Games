@@ -4,19 +4,19 @@ enable :sessions
 
 get "/hangman" do
   @title = "Hangman"
-  session[:setup] == true ? play : setup
+  session[:setup_done] == true ? play : setup
   erb :hangman
 end
 
 post "/hangman" do
-  session[:setup] = false if params[:reset] == "true"
+  session[:setup_done] = false if params[:reset] == "true"
   session[:character] = params[:guess]
   redirect "/hangman"
 end
 
 
 def setup
-  dictionary = File.read("5desk.txt").split(" ")
+  dictionary = File.read("public/5desk.txt").split(" ")
   @secret_word = dictionary.select{ |word| (5..12) === word.length }.sample.downcase
   session[:secret_word] = @secret_word
   @preview = @secret_word.gsub(/./, "_")
@@ -25,7 +25,7 @@ def setup
   @win = false
   @defeat = false
   save_session
-  session[:setup] = true
+  session[:setup_done] = true
 end
 
 def play
