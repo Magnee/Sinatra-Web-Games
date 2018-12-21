@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= @title %></title>
+    <link rel="stylesheet" type="text/css" href="<%= url("css#{request.path_info}.css")%>">
   </head>
   <body>
     <%= yield %>
