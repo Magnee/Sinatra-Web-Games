@@ -1,3 +1,51 @@
-h1 {
+main {
+  background-color: lightgrey;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 50px;
+  width: 320px;
+}
+
+#title {
+  margin: 20px;
+  text-align: center;
+}
+
+#secretword {
+  text-align: center;
+}
+
+#imagecontainer {
+  background-color: white;
+  border: 1px solid black;
+  margin: auto;
+  text-align: center;
+  width: 250px;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+ }
+
+#preview {
+ height: 120px;
+ text-align: center;
+}
+
+#win {
   color: green;
+}
+
+#defeat {
+  color: red;
+}
+
+#interactive {
+  border: 1px solid black;
+  height: 120px;
+  margin: auto;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 250px;
 }

@@ -1,48 +1,64 @@
-<h1>Hangman</h1>
+<main>
+  <h1 id="title">Hangman</h1>
 
-<% if @win == true || @defeat == true %>
-  <h2><%= @secret_word.capitalize %></h2>
-<% else %>
-  <h2><%= @secret_word.gsub(/./, "?") %></h2>
-<% end %>
+  <div id="secretword">
+    <% if @win == true || @defeat == true %>
+      <h2><%= @secret_word.capitalize %></h2>
+    <% else %>
+      <h2><%= @secret_word.gsub(/./, "?") %> (<%= @preview.length %>)</h2>
+    <% end %>
+  </div>
 
-<img src=<%= @image %> alt="hangman picture" />
+  <div id="imagecontainer">
+    <img src=<%= @image %> alt="hangman picture" />
+    <p>Gallow pieces: <%= @wrongs %>/9</p>
+  </div>
 
-<p>Gallow pieces: <%= @wrongs %>/9</p>
+  <div id="preview">
+    <h2><%= @preview.capitalize.split("").join(" ") %></h2>
 
-<h2><%= @preview.capitalize.split("").join(" ") %> (<%= @preview.length %>)</h2>
+    <% unless @win == true || @defeat == true %>
+      <h3>Guesses:</h3>
+      <h3><%= @guesslist %></h3>
+    <% end %>
 
-<% unless @win == true || @defeat == true %>
-  <h3>Guess a character</h3>
-<% end %>
+    <% if @win == true %>
+      <h1 id="win">YOU WIN!</h1>
+    <% end %>
 
+    <% if @defeat == true %>
+      <h1 id="defeat">YOU LOSE!</h1>
+    <% end %>
+  </div>
 
-<% unless @win == true || @defeat == true %>
-  <form action="/hangman" method="POST">
-    <select name="guess">
-      <option disabled="disabled" selected="selected">Character</option>
-      <% ("a".."z").to_a.each do |char| %>
-        <% unless @guesslist.split("").include?(char) %>
-          <option><%= char %></option>
-        <% end %>
-      <% end %>
-    </select>
-    <button type="submit">Guess</button>
-  </form>
-<% end %>
+  <div id="interactive">
+    <% unless @win == true || @defeat == true %>
+      <h3>Guess a character</h3>
+    <% end %>
 
-<% if @win == true %>
-  <h1>YOU WIN!</h1>
-<% end %>
+    <% if @win == true || @defeat == true %>
+      <h3>Game Over</h3>
+    <% end %>
 
-<% if @defeat == true %>
-  <h1>DEFEAT</h1>
-<% end %>
+    <% unless @win == true || @defeat == true %>
+      <form action="/hangman" method="POST">
+        <select name="guess">
+          <option disabled="disabled" selected="selected">Character</option>
+          <% ("a".."z").to_a.each do |char| %>
+            <% unless @guesslist.split("").include?(char) %>
+              <option><%= char %></option>
+            <% end %>
+          <% end %>
+        </select>
+        <button type="submit">Guess</button>
+      </form>
+    <% end %>
 
-<% unless @win == true || @defeat == true %>
-  <h3>Guesses: <%= @guesslist %></h3>
-<% end %>
+    <% if @win == true || @defeat == true %>
+      <form id="newgame" action="/hangman" method="POST">
+        <button type="submit" name="reset" value="true">New Game</button>
+      </form>
+    <% end %>
+  <div>
 
-<form action="/hangman" method="POST">
-  <button type="submit" name="reset" value="true">New Game</button>
-</form>
+</main>
