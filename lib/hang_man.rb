@@ -1,7 +1,12 @@
 get "/hangman" do
   @title = "Hangman"
-  load_session
-  session[:hm_setup_done] == "yes" ? Hangmangame.play : Hangmangame.setup
+  if session[:hm_setup_done] == "yes"
+    load_session
+    Hangmangame.play
+  else
+    Hangmangame = Hangman.new
+    session[:hm_setup_done] = "yes"
+  end
   save_session
   erb :hangman
 end
@@ -14,9 +19,9 @@ end
 
 
 class Hangman
-  attr_accessor :defeat, :guess, :guesslist, :image, :preview, :secret_word, :setup_done, :win, :wrongs
+  attr_accessor :defeat, :guess, :guesslist, :image, :preview, :secret_word, :win, :wrongs
 
-  def setup
+  def initialize
     dictionary = File.read("public/5desk.txt").split(" ")
     @secret_word = dictionary.select{ |word| (5..12) === word.length }.sample.downcase
     @preview = @secret_word.gsub(/./, "_")
@@ -25,7 +30,6 @@ class Hangman
     @win = false
     @defeat = false
     @image = "images/hangman#{@wrongs}.png"
-    @setup_done = "yes"
   end
 
   def play
@@ -67,5 +71,3 @@ class Hangman
   end
 
 end
-
-Hangmangame = Hangman.new

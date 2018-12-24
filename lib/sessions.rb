@@ -6,7 +6,6 @@ def save_session
   session[:hm_image]        = Hangmangame.image
   session[:hm_preview]      = Hangmangame.preview
   session[:hm_secret_word]  = Hangmangame.secret_word
-  session[:hm_setup_done]   = Hangmangame.setup_done
   session[:hm_win]          = Hangmangame.win
   session[:hm_wrongs]       = Hangmangame.wrongs
 end
