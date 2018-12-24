@@ -1,7 +1,3 @@
-require 'sinatra'
-
-enable :sessions
-
 get "/hangman" do
   @title = "Hangman"
   session[:setup_done] == true ? play : setup
