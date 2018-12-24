@@ -1,6 +1,6 @@
 enable :sessions
 
-def save_session
+def save_session_hangman
   session[:hm_defeat]       = Hangmangame.defeat
   session[:hm_guesslist]    = Hangmangame.guesslist
   session[:hm_image]        = Hangmangame.image
@@ -10,7 +10,7 @@ def save_session
   session[:hm_wrongs]       = Hangmangame.wrongs
 end
 
-def load_session
+def load_session_hangman
   Hangmangame.defeat      = session[:hm_defeat]
   Hangmangame.guess       = session.delete(:hm_character)
   Hangmangame.guesslist   = session[:hm_guesslist]
@@ -19,4 +19,12 @@ def load_session
   Hangmangame.secret_word = session[:hm_secret_word]
   Hangmangame.win         = session[:hm_win]
   Hangmangame.wrongs      = session[:hm_wrongs]
+end
+
+def save_session_mastermind
+  session[:mm_gametype] = Mastermindgame.gametype
+end
+
+def load_session_mastermind
+  Mastermindgame.gametype = session[:mm_gametype]
 end

@@ -1,13 +1,13 @@
 get "/hangman" do
   @title = "Hangman"
   if session[:hm_setup_done] == "yes"
-    load_session
+    load_session_hangman
     Hangmangame.play
   else
     Hangmangame = Hangman.new
     session[:hm_setup_done] = "yes"
   end
-  save_session
+  save_session_hangman
   erb :hangman
 end
 
