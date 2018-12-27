@@ -2,6 +2,167 @@
 
   <h1 id="title">Mastermind</h1>
 
+  <% if Mastermindgame.gametype == "none" %>
+    <form action="/mastermind" method="POST">
+      <button type="submit" name="gametype" value="b">Codebreaker</button>
+      <button type="submit" name="gametype" value="m">Codemaker</button>
+    </form>
+  <% end %>
+
+
+<!--           CODE BREAKER           -->
+
+  <% if Mastermindgame.gametype == "b" %>
+
+    <h2>Codebreaker</h2>
+
+    <table>
+      <tr>
+        <% if Mastermindgame.win == true || Mastermindgame.defeat == true %>
+          <td><%= Mastermindgame.code[0] %></td><td><%= Mastermindgame.code[1] %></td><td><%= Mastermindgame.code[2] %></td><td><%= Mastermindgame.code[3] %></td>
+        <% else %>
+          <td>?</td><td>?</td><td>?</td><td>?</td>
+        <% end %>
+      </tr>
+    </table>
+
+    <table>
+      <% Mastermindgame.guesses.each_with_index do |guess, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= guess[0] %></td>
+          <td><%= guess[1] %></td>
+          <td><%= guess[2] %></td>
+          <td><%= guess[3] %></td>
+          <td><%= Mastermindgame.hints[index].join unless guess[0] == nil %></td>
+        </tr>
+      <% end %>
+      <% (12 - Mastermindgame.guesses.length).times do |i| %>
+        <tr>
+          <td><%= Mastermindgame.guesses.length + i + 1 %></td><td>___</td><td>___</td><td>___</td><td>___</td>
+        </tr>
+      <% end %>
+    </table>
+
+    <% if Mastermindgame.win == true %>
+      <h2>YOU WIN!</h2>
+    <% elsif Mastermindgame.defeat == true %>
+      <h2>YOU LOOSE!</h2>
+    <% else %>
+    <form id="colorpicker" action="/mastermind" method="POST">
+      <select name="color1" required>
+        <option disabled="disabled" selected="selected">Color</option>
+        <% Mastermindgame.colors.each do |i| %>
+          <option><%= i %></option>
+        <% end %>
+      </select>
+      <select name="color2" required>
+        <option disabled="disabled" selected="selected">Color</option>
+        <% Mastermindgame.colors.each do |i| %>
+          <option><%= i %></option>
+        <% end %>
+      </select>
+      <select name="color3" required>
+        <option disabled="disabled" selected="selected">Color</option>
+        <% Mastermindgame.colors.each do |i| %>
+          <option><%= i %></option>
+        <% end %>
+      </select>
+      <select name="color4" required>
+        <option disabled="disabled" selected="selected">Color</option>
+        <% Mastermindgame.colors.each do |i| %>
+          <option><%= i %></option>
+        <% end %>
+      </select>
+      <button type="submit">Enter</button>
+    </form>
+    <% end %>
+
+  <% end %>
+
+
+<!--           CODE MAKER           -->
+
+  <% if Mastermindgame.gametype == "m" %>
+
+    <h2>Codemaker</h2>
+
+    <% if Mastermindgame.code == [] %>
+      <p>Set a code:</p>
+
+      <form id="colorpicker" action="/mastermind" method="POST">
+        <select name="color1" required>
+          <option disabled="disabled" selected="selected">Color</option>
+          <% Mastermindgame.colors.each do |i| %>
+            <option><%= i %></option>
+          <% end %>
+        </select>
+        <select name="color2" required>
+          <option disabled="disabled" selected="selected">Color</option>
+          <% Mastermindgame.colors.each do |i| %>
+            <option><%= i %></option>
+          <% end %>
+        </select>
+        <select name="color3" required>
+          <option disabled="disabled" selected="selected">Color</option>
+          <% Mastermindgame.colors.each do |i| %>
+            <option><%= i %></option>
+          <% end %>
+        </select>
+        <select name="color4" required>
+          <option disabled="disabled" selected="selected">Color</option>
+          <% Mastermindgame.colors.each do |i| %>
+            <option><%= i %></option>
+          <% end %>
+        </select>
+        <button type="submit">Enter</button>
+      </form>
+
+    <% else %>
+
+      <table>
+        <tr>
+          <td><%= Mastermindgame.code[0] %></td><td><%= Mastermindgame.code[1] %></td><td><%= Mastermindgame.code[2] %></td><td><%= Mastermindgame.code[3] %></td>
+        </tr>
+      </table>
+
+      <table>
+        <% Mastermindgame.guesses.each_with_index do |guess, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= guess[0] %></td>
+            <td><%= guess[1] %></td>
+            <td><%= guess[2] %></td>
+            <td><%= guess[3] %></td>
+            <td><%= Mastermindgame.hints[index].join unless guess[0] == nil %></td>
+          </tr>
+        <% end %>
+        <% (12 - Mastermindgame.guesses.length).times do |i| %>
+          <tr>
+            <td><%= Mastermindgame.guesses.length + i + 1 %></td><td>___</td><td>___</td><td>___</td><td>___</td>
+          </tr>
+        <% end %>
+      </table>
+
+      <% if Mastermindgame.win == true %>
+        <h2>COMPUTER WINS!</h2>
+      <% elsif Mastermindgame.defeat == true %>
+        <h2>COMPUTER LOSES!</h2>
+      <% else %>
+        <form action="/mastermind" method="POST">
+          <button type="submit" name="airun" value="true">Run AI round</button>
+        </form>
+      <% end %>
+
+    <% end %>
+
+  <% end %>
+
+  <% if Mastermindgame.gametype != "none" %>
+    <form id="newgame" action="/mastermind" method="POST">
+      <button type="submit" name="reset" value="true">New Game</button>
+    </form>
+  <% end %>
 
 
 </main>

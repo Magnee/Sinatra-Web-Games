@@ -22,9 +22,22 @@ def load_session_hangman
 end
 
 def save_session_mastermind
-  session[:mm_gametype] = Mastermindgame.gametype
+  session[:mm_code]       = Mastermindgame.code
+  session[:mm_gametype]   = Mastermindgame.gametype
+  session[:mm_guess]      = Mastermindgame.guess
+  session[:mm_guesses]    = Mastermindgame.guesses
+  session[:mm_hints]      = Mastermindgame.hints
 end
 
 def load_session_mastermind
-  Mastermindgame.gametype = session[:mm_gametype]
+  Mastermindgame.airun     = session.delete(:mm_airun)
+  Mastermindgame.color1    = session.delete(:mm_color1)
+  Mastermindgame.color2    = session.delete(:mm_color2)
+  Mastermindgame.color3    = session.delete(:mm_color3)
+  Mastermindgame.color4    = session.delete(:mm_color4)
+  Mastermindgame.code      = session[:mm_code]
+  Mastermindgame.gametype  = session[:mm_gametype]
+  Mastermindgame.guess     = session[:mm_guess]
+  Mastermindgame.guesses   = session[:mm_guesses]
+  Mastermindgame.hints     = session[:mm_hints]
 end
