@@ -30,7 +30,7 @@ class Mastermind
 
   def initialize
     @code = []
-    @colors = ["blue", "green", "orange", "purple", "red", "yellow"]
+    @colors = ["Blue", "Green", "Orange", "Purple", "Red", "Yellow"]
     @gametype = "none"
     @guesses = []
     @hints = []
